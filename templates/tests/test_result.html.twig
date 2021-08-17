@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Resultaat Toets{% endblock %}
+
+{% block body %}
+    Dit is het einde van de Toets! </br>
+    In de tabel hieronder staan de toetsgegevens van jouw toets.
+    Bekijk deze goed en bepaal aan de hand van deze gegevens of je misschien nog meer moet gaan oefenen. Je kunt de toets altijd opnieuw proberen!
+
+    <div class="p-3 mt-3 bg-body rounded table table-info">
+        <h5>Toetsresultaat</h5>
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th scope="row">Cijfer</th>
+                <td>{{ grade }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Goed</th>
+                <td>{{ amountGood }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Fout</th>
+                <td>{{ amountWrong }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Fout Optellen</th>
+                <td>{{ amountWrongAdd }} van de {{ amountAdd }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Fout Aftrekken</th>
+                <td>{{ amountWrongSubtract }} van de {{ amountSubtract }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Fout Keer</th>
+                <td>{{ amountWrongMultiply }} van de {{ amountMultiply }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Fout Delen</th>
+                <td>{{ amountWrongDivide }} van de {{ amountDivide }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

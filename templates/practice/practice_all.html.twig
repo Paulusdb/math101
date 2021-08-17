@@ -1,0 +1,27 @@
+{% extends '/practice/practice.html.twig' %}
+
+{% block pagetitle %}Oefenen - Door elkaar{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <div class="col-12">
+        Hier kun je alles door elkaar oefenen als het gaat om Rekenen met negatieve getallen.
+        {% if not is_granted('ROLE_USER') %}
+            Voordat je hiermee begint, is het verstandig om in te loggen, zodat al je resultaten worden opgeslagen.
+        {% endif %}
+        </br></br>
+        Bereken.</br>
+        {% form_theme exercise_form 'bootstrap_4_horizontal_layout.html.twig' %}
+        {{ form_start(exercise_form, {'attr': {'autocomplete': 'off'}}) }}
+            {{ form_label(exercise_form.answer, exercise) }}
+            {{ form_widget(exercise_form.answer, {'value': '', 'attr': {'style': 'width:200px'} }) }}
+            {{ form_widget(exercise_form.submit, {'label': 'Verstuur' }) }}
+            {{ form_row(exercise_form.correctAnswer, {'value': correctAnswer }) }}
+            {{ form_row(exercise_form.exercise, {'value': exercise }) }}
+        {{ form_end(exercise_form) }}
+
+        {% if previousExercise is defined %}
+            De vorige opdracht was {{ previousExercise }}, jouw antwoord was {{ answer }}.</br>
+            Dit is <b>{{ result }}</b>! Het juiste antwoord was {{ previousCorrectAnswer }}.
+        {% endif %}
+    </div>
+{% endblock %}

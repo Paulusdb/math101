@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Account - Resultaten{% endblock %}
+{% block body %}
+    <div class="col-12">
+        <div class="p-3 bg-body rounded table table-info">
+            <h5>Mijn Toetsresultaten</h5>
+            {% if testResults is not empty %}
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th scope="col">Onderwerp</th>
+                        <th scope="col">Cijfer</th>
+                        <th scope="col">Aantal Goed</th>
+                        <th scope="col">Aantal Fout</th>
+                        <th scope="col">Tijd besteed</th>
+                        <th scope="col">Datum en Tijd</th>
+                    </tr>
+                    {% for testResult in testResults %}
+                    <tr class="position-relative">
+                        <td>
+                            {{ form_start(result_forms[loop.index0] ) }}
+                                {{ form_widget(result_forms[loop.index0].submit, {'label': testResult.topic, 'attr': {'class': 'p-0 stretched-link'} }) }}
+                                {{ form_row(result_forms[loop.index0].id, {'value': testResult.id }) }}
+                            {{ form_end(result_forms[loop.index0]) }}
+                        </td>
+                        <td>{{ testResult.grade }}</td>
+                        <td>{{ testResult.amountGood }}</td>
+                        <td>{{ testResult.amountWrong }}</td>
+                        <td>{{ testResult.timeSpend }}</td>
+                        <td>{{ testResult.dateTime|date("d-m-Y H:i:s") }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Er zijn geen resultaten gevonden!</p>
+            {% endif %}
+        </div>
+        <div class="p-3 mt-4 bg-body rounded table table-info">
+            <h5>Mijn Oefenresultaten</h5>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th scope="col">Onderwerp</th>
+                    <th scope="col">Onderdeel</th>
+                    <th scope="col">Aantal Oefeningen</th>
+                    <th scope="col">Aantal Goed</th>
+                    <th scope="col">Aantal Fout</th>
+                    <th scope="col">Datum en Tijd</th>
+                </tr>
+                {% for practiceResult in practiceResults %}
+                    <tr>
+                        <td>{{ practiceResult.topic }}</td>
+                        <td>{{ practiceResult.subTopic }}</td>
+                        <td>{{ practiceResult.exerciseQuantity }}</td>
+                        <td>{{ practiceResult.amountGood }}</td>
+                        <td>{{ practiceResult.amountWrong }}</td>
+                        <td>{{ practiceResult.date|date("d-m-Y") }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

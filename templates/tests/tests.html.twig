@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Toetsen{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <div class="col-12 float-left">
+        Op deze pagina maak je de toets van Rekenen met negatieve getallen.
+        Voordat je deze toets gaat maken, is het verstandig om te oefenen.
+        {% if not is_granted('ROLE_USER') %}
+            Ook is het verstandig om in te loggen, zodat je toetsresultaten worden opgeslagen.
+        {% endif %}
+        De toets zal alle onderdelen van Negatieve getallen door elkaar aftoetsen.</br></br>
+        Bereken.</br>
+        {% form_theme test_form 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(test_form, {'attr': {'autocomplete': 'off'}}) }}
+            {{ form_label(test_form.answer, exercise) }}
+            {{ form_widget(test_form.answer, {'value': '', 'attr': {'style': 'width:200px'} }) }}
+            {{ form_widget(test_form.submit, {'label': 'Verstuur' }) }}
+            {{ form_row(test_form.correctAnswer, {'value': correctAnswer }) }}
+            {{ form_row(test_form.remainingExercises, {'value': remainingExercises }) }}
+            {{ form_row(test_form.amountGood, {'value': amountGood }) }}
+            {{ form_row(test_form.amountWrong, {'value': amountWrong }) }}
+            {{ form_row(test_form.operator, {'value': operator }) }}
+            {{ form_row(test_form.amountAdd, {'value': amountAdd }) }}
+            {{ form_row(test_form.amountSubtract, {'value': amountSubtract }) }}
+            {{ form_row(test_form.amountMultiply, {'value': amountMultiply }) }}
+            {{ form_row(test_form.amountDivide, {'value': amountDivide }) }}
+            {{ form_row(test_form.amountWrongAdd, {'value': amountWrongAdd }) }}
+            {{ form_row(test_form.amountWrongSubtract, {'value': amountWrongSubtract }) }}
+            {{ form_row(test_form.amountWrongMultiply, {'value': amountWrongMultiply }) }}
+            {{ form_row(test_form.amountWrongDivide, {'value': amountWrongDivide }) }}
+        {{ form_end(test_form) }}
+    </div>
+{% endblock %}
+{% block info %}
+    <div class="float-right">
+        <table class="table table-info table-striped">
+            <tbody>
+            <tr>
+                <th scope="row">Resterende vragen</th>
+                <td>{{ remainingExercises }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Goed</th>
+                <td>{{ amountGood }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Aantal Fout</th>
+                <td>{{ amountWrong }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

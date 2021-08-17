@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Math101{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand navbar-dark bg-dark ">
+            <a class="navbar-brand" href="{{ path('app_homepage') }}">
+                <img src="{{ asset('build/images/math101.jpg') }}" width="100" height="30" class="d-inline-block align-top" alt="math101">
+                Math101
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_homepage') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_practice') }}">Oefenen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_test_explanation') }}">Toetsen</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a class="nav-link" href="{{ path('app_about') }}">About</a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a class="btn btn-outline-info my-2 my-sm-0 nav-link" href="{{ path('app_account') }}">Account</a>
+                </li>
+                <li class="nav-item ml-1">
+                    <a class="btn btn-outline-secondary nav-link" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Uitloggen</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-outline-info my-2 my-sm-0 nav-link" href="{{ path('app_login') }}">Log In</a>
+                </li>
+                <li class="nav-item ml-1" >
+                    <a class="btn btn-outline-info my-2 my-sm-0 nav-link" href="{{ path('signup') }}">Sign up</a>
+                </li>
+                {% endif %}
+              </ul>
+        </nav>
+
+        {# Flash messages #}
+        {% if app.session.flashBag.peek('success')|length > 0 %}
+            <div class="alert alert-success text-center">
+                {% for flash in app.session.flashBag.get('success') %}
+                    {{ flash|trans|raw }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if app.session.flashBag.peek('error')|length > 0 %}
+            <div class="alert alert-block alert-danger">
+                {% for flash in app.session.flashBag.get('error') %}
+                    <p class="text-center">
+                        {{ flash|trans|raw }}
+                    </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col mb-3">
+                    <h1 class="mt-5">{% block pagetitle %}{% endblock %}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col footer-nav pt-3 mb-3">
+                    {% block body %}{% endblock %}
+                </div>
+                {% block info %}{% endblock %}
+            </div>
+            <div class="row">
+                <div class="col footer-nav">
+                    <p class="pt-4">Made with <span class="text-danger"><3</span> by Paulusdb</p>
+                </div>
+            </div>
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

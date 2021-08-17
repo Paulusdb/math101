@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Toetsen{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <div class="col-12">
+        Op deze pagina kan je de toets maken van Rekenen met negatieve getallen.
+        Voordat je deze toets gaat maken, is het verstandig om te oefenen.
+        {% if not is_granted('ROLE_USER') %}
+            Ook is het verstandig om in te loggen, zodat je toetsresultaten worden opgeslagen.
+        {% endif %}
+        De toets zal alle onderdelen van Negatieve getallen door elkaar aftoetsen.</br></br>
+
+        Deze toets bestaat uit 25 opgaven. Probeer de toets zo snel en zo goed mogelijk te maken. De toets stopt namelijk na 7 en een halve minuut.
+        De vragen die je dan nog niet beantwoord hebt, worden dan fout gerekend. Je mist dan de punten voor die vragen, waardoor je een lager cijfer krijgt. Succes!
+        </br>
+        <a class="btn mt-3 btn-primary" href="{{ path('app_tests') }}" role="button">Begin met de toets</a>
+    </div>
+{% endblock %}

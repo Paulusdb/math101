@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Account - Resultaten Klassen{% endblock %}
+{% block body %}
+    <div class="col-12">
+        {% for class, students in results %}
+            <div class="p-3 mb-4 bg-body rounded table table-info">
+                <div class="pb-3 top-nav">
+                    <h5>Toetsresultaten {{ class }}</h5>
+                    {% if students is not empty %}
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th scope="col">Naam</th>
+                                <th scope="col">Onderwerp</th>
+                                <th scope="col">Cijfer</th>
+                                <th scope="col">Aantal Goed</th>
+                                <th scope="col">Aantal Fout</th>
+                                <th scope="col">Tijd besteed</th>
+                                <th scope="col">Datum en Tijd</th>
+                            </tr>
+                            {% for student, results in students %}
+                                {% if testResults[class][student] is not empty %}
+                                <tr class="position-relative">
+                                    <td class="text-dark stretched-link">
+                                        {{ testResults[class][student][0].username }}
+                                    </td>
+                                    <td>{{ testResults[class][student][0].topic }}</td>
+                                    <td>{{ testResults[class][student][0].grade }}</td>
+                                    <td>{{ testResults[class][student][0].amountGood }}</td>
+                                    <td>{{ testResults[class][student][0].amountWrong }}</td>
+                                    <td>{{ testResults[class][student][0].timeSpend }}</td>
+                                    <td>{{ testResults[class][student][0].dateTime|date("d-m-Y H:i:s") }}</td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td>{{ student }}</td>
+                                        <td colspan="100">Er zijn geen toetsresultaten gevonden!</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        Er zijn geen leerlingen gekoppeld aan deze klas!
+                    {% endif %}
+                </div>
+                <div class="pt-3">
+                    <h5>Oefenresultaten {{ class }}</h5>
+                    {% if students is not empty %}
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th scope="col">Naam</th>
+                                <th scope="col">Onderwerp</th>
+                                <th scope="col">Onderdeel</th>
+                                <th scope="col">Aantal Oefeningen</th>
+                                <th scope="col">Aantal Goed</th>
+                                <th scope="col">Aantal Fout</th>
+                                <th scope="col">Datum</th>
+                            </tr>
+                            {% for student, results in students %}
+                                {% if practiceResults[class][student] is not empty %}
+                                <tr class="position-relative">
+                                    <td>{{ practiceResults[class][student][0].username }}</td>
+                                    <td>{{ practiceResults[class][student][0].topic }}</td>
+                                    <td>{{ practiceResults[class][student][0].subTopic }}</td>
+                                    <td>{{ practiceResults[class][student][0].exerciseQuantity }}</td>
+                                    <td>{{ practiceResults[class][student][0].amountGood }}</td>
+                                    <td>{{ practiceResults[class][student][0].amountWrong }}</td>
+                                    <td>{{ practiceResults[class][student][0].date|date("d-m-Y") }}</td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td>{{ student }}</td>
+                                        <td colspan="100">Er zijn geen oefenresultaten gevonden!</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        Er zijn geen leerlingen gekoppeld aan deze klas!
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

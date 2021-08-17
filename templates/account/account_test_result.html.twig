@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Account - Toetsresultaat{% endblock %}
+{% block body %}
+    <div class="col-12">
+        <div class="p-3 mb-5 bg-body rounded table table-info">
+            <h5>Mijn Toetsresultaat</h5>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th scope="row">Cijfer</th>
+                    <td>{{ testResult.grade }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Aantal Goed</th>
+                    <td>{{ testResult.amountGood }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Aantal Fout</th>
+                    <td>{{ testResult.amountWrong }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Aantal Fout Optellen</th>
+                    <td>{{ testResult.amountWrongAdd }} van de {{ testResult.amountAdd }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Aantal Fout Aftrekken</th>
+                    <td>{{ testResult.amountWrongSubtract }} van de {{ testResult.amountSubtract }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Aantal Fout Keer</th>
+                    <td>{{ testResult.amountWrongMultiply }} van de {{ testResult.amountMultiply }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Aantal Fout Delen</th>
+                    <td>{{ testResult.amountWrongDivide }} van de {{ testResult.amountDivide }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

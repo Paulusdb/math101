@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block pagetitle %}Oefenen{% endblock %}
+{% block body %}
+    <div class="col-12">
+        <a class="btn btn-primary" role="button" href="{{ path('app_practice_add') }}">Optellen </a>
+        <a class="btn btn-primary" role="button" href="{{ path('app_practice_subtract') }}">Aftrekken </a>
+        <a class="btn btn-primary" role="button" href="{{ path('app_practice_multiply') }}">Vermenigvuldigen </a>
+        <a class="btn btn-primary" role="button" href="{{ path('app_practice_divide') }}">Delen </a>
+        <a class="btn btn-primary" role="button" href="{{ path('app_practice_all') }}">Door elkaar </a>
+        </br></br>
+    </div>
+{% endblock %}
