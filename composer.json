@@ -1,10 +1,10 @@
 {
-    "name": "symfonycasts/solid",
-    "description": "An app to share Big foot sighting pictures",
+    "name": "",
+    "description": "",
     "minimum-stability": "stable",
     "type": "project",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "^1.11",
