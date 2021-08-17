@@ -196,8 +196,16 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getClass(): ?string
+    public function getClass()
     {
+        if (!$this->class) {
+            return 'Er zijn geen klassen gekoppeld.';
+        }
+        else {
+            if (stristr($this->class, ',')) {
+                $this->class = explode(',', $this->class);
+            }
+        }
         return $this->class;
     }
 

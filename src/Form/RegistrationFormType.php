@@ -6,6 +6,8 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +26,23 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'label' => 'Password',
                 'mapped' => false
-            ]);
+            ])
+            ->add('userType', ChoiceType::class, [
+                'choices' => [
+                    'Docent' => 'teacher',
+                    'Leerling' => 'student',
+                ],
+                'label' => 'Docent/Leerling',
+                'required' => true,
+            ])
+            ->add('class', TextType::class, [
+                'label' => 'Klas (meerdere klassen scheiden met een komma)'
+            ])
+            ->add('username', TextType::class, [
+                'label' => 'Gebruikersnaam',
+                'required' => true,
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

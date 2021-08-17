@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Registration{% endblock %}
+{% block title %}Registreren{% endblock %}
 
 {% block body %}
     <div class="col-12">
-        {{ form_start(form) }}
-
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(form, {'attr': {'style': 'width: 400px;'}}) }}
         {{ form_row(form.email) }}
         {{ form_row(form.plainPassword) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.userType) }}
+        {{ form_row(form.class) }}
 
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-                <button class="btn btn-primary" type="submit">Sign up!</button>
+                <button class="btn btn-primary" type="submit">Aanmelden!</button>
             </div>
         </div>
-
         {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -56,7 +56,7 @@ class AccountController extends AbstractController
                 }
             }
             $results = array_merge_recursive($practiceResults, $testResults);
-            dump($results, $testResults, $practiceResults);
+
             return $this->render('account/account_teacher.html.twig', [
                 'practiceResults' => $practiceResults,
                 'testResults' => $testResults,

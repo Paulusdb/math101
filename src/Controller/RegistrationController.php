@@ -27,7 +27,6 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var $user User */
             $user = $form->getData();
-            $user->setUsername($user->getEmail());
             $user->setAgreedToTermsAt(new \DateTime('now'));
 
             $plainPassword = $form->get('plainPassword')->getData();
